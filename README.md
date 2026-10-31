@@ -33,7 +33,34 @@ A CNN classifier trained to **99.1% test accuracy**, then fooled with a small, a
 <img src="assets/diffusion_samples.png" width="40%" alt="Unconditional diffusion samples">
 </p>
 
-## Notebooks
+## Running the code (VS Code / Python)
+
+Everything is implemented in PyTorch in the `genmodels/` package, with one command per experiment. MNIST downloads automatically to `data/raw/`; images go to `outputs/` and trained models to `checkpoints/`.
+
+```bash
+python -m venv .venv
+source .venv/bin/activate        # Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+
+python main.py gan --preset minimax                  # 2.1
+python main.py gan --preset non-saturating           # 2.2
+python main.py gan --preset conditional              # 2.3, one row of samples per digit
+python main.py adversarial --source 4 --target 9     # 2.4
+python main.py diffusion-1d                          # 2.5, 1D forward/reverse diffusion plots
+python main.py diffusion-train --model unet          # 2.5: unet | unet_res | transformer
+python main.py diffusion-sample --model transformer --digit 7
+```
+
+Every command takes `--help`; defaults are the notebooks' hyperparameters (e.g. `--iterations`, `--epochs`, `--lr` can be overridden for quicker runs). In VS Code, open the folder, select the `.venv` interpreter and use the **Run and Debug** panel (`.vscode/launch.json` has a configuration per experiment). `pytest` runs fast smoke tests.
+
+| Path | Contents |
+|---|---|
+| [`main.py`](main.py) | Command-line entry point |
+| [`genmodels/gan.py`](genmodels/gan.py) | Generator/discriminator, minimax and non-saturating losses, conditional GAN |
+| [`genmodels/adversarial.py`](genmodels/adversarial.py) | MNIST CNN and targeted fast-gradient-sign attack |
+| [`genmodels/diffusion.py`](genmodels/diffusion.py) | 1D demos, VE-SDE, three U-Nets (incl. cross-attention), score-matching loss, Euler-Maruyama sampler |
+
+## Original notebooks
 
 | Notebook | Topic | Framework |
 |---|---|---|
@@ -43,12 +70,7 @@ A CNN classifier trained to **99.1% test accuracy**, then fooled with a small, a
 | [`2.4_adversarial_examples.ipynb`](notebooks/2.4_adversarial_examples.ipynb) | Adversarial attacks on a CNN | TensorFlow |
 | [`2.5_diffusion_models.ipynb`](notebooks/2.5_diffusion_models.ipynb) | Score-based diffusion, U-Net, cross-attention | PyTorch |
 
-MNIST downloads automatically.
-
-```bash
-pip install torch torchvision tensorflow einops matplotlib tqdm jupyter
-jupyter notebook notebooks/
-```
+The notebooks need `tensorflow` and `einops` in addition to the packages in `requirements.txt`.
 
 ## Team
 
