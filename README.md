@@ -51,7 +51,7 @@ python main.py diffusion-train --model unet          # 2.5: unet | unet_res | tr
 python main.py diffusion-sample --model transformer --digit 7
 ```
 
-Every command takes `--help`; defaults are the notebooks' hyperparameters (e.g. `--iterations`, `--epochs`, `--lr` can be overridden for quicker runs). In VS Code, open the folder, select the `.venv` interpreter and use the **Run and Debug** panel (`.vscode/launch.json` has a configuration per experiment). `pytest` runs fast smoke tests.
+Every command takes `--help`; defaults are the original hyperparameters (e.g. `--iterations`, `--epochs`, `--lr` can be overridden for quicker runs). In VS Code, open the folder, select the `.venv` interpreter and use the **Run and Debug** panel (`.vscode/launch.json` has a configuration per experiment). `pytest` runs fast smoke tests.
 
 | Path | Contents |
 |---|---|
@@ -59,18 +59,6 @@ Every command takes `--help`; defaults are the notebooks' hyperparameters (e.g. 
 | [`genmodels/gan.py`](genmodels/gan.py) | Generator/discriminator, minimax and non-saturating losses, conditional GAN |
 | [`genmodels/adversarial.py`](genmodels/adversarial.py) | MNIST CNN and targeted fast-gradient-sign attack |
 | [`genmodels/diffusion.py`](genmodels/diffusion.py) | 1D demos, VE-SDE, three U-Nets (incl. cross-attention), score-matching loss, Euler-Maruyama sampler |
-
-## Original notebooks
-
-| Notebook | Topic | Framework |
-|---|---|---|
-| [`2.1_gan_minimax.ipynb`](notebooks/2.1_gan_minimax.ipynb) | GAN with minimax loss | TensorFlow |
-| [`2.2_gan_non_saturating_loss.ipynb`](notebooks/2.2_gan_non_saturating_loss.ipynb) | GAN with non-saturating loss | PyTorch/TensorFlow |
-| [`2.3_conditional_gan.ipynb`](notebooks/2.3_conditional_gan.ipynb) | Conditional GAN | PyTorch/TensorFlow |
-| [`2.4_adversarial_examples.ipynb`](notebooks/2.4_adversarial_examples.ipynb) | Adversarial attacks on a CNN | TensorFlow |
-| [`2.5_diffusion_models.ipynb`](notebooks/2.5_diffusion_models.ipynb) | Score-based diffusion, U-Net, cross-attention | PyTorch |
-
-The notebooks need `tensorflow` and `einops` in addition to the packages in `requirements.txt`.
 
 ## Team
 
