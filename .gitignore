@@ -6,3 +6,8 @@ runs/
 *.pt
 *.pth
 *.zip
+outputs/
+checkpoints/
+data/
+.venv/
+.pytest_cache/
