@@ -1,2 +1,0 @@
-# Keep the original notebooks out of GitHub language stats so the repo shows as Python
-*.ipynb linguist-documentation
